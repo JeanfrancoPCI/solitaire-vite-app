@@ -1,0 +1,7 @@
+.timer > label {
+    font-weight: bolder;
+}
+
+.timer > span {
+    color: yellow;
+}
