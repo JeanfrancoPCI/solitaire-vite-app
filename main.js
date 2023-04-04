@@ -2,7 +2,7 @@ import './style.css';
 import javascriptLogo from './javascript.svg';
 import viteLogo from '/vite.svg';
 import { renderMenuButtons } from './src/presentation/menu-buttons/render-menu-buttons';
-import { game } from './src/presentation/game/game';
+import { game } from './src/presentation/game/render-game';
 
 document.querySelector('#app').innerHTML = `
   <div class="app">

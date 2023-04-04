@@ -4,7 +4,6 @@ const pathAssetsCards = '../assets/cards';
 const svgBackCover = 'back-black.svg';
 
 export const renderCard = ( element, card ) => {
-
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
     cardDiv.setAttribute('data-id', card.value + card.sign)
@@ -13,6 +12,7 @@ export const renderCard = ( element, card ) => {
         cardDiv.classList.toggle('flipCard');
     });
     showCard(cardDiv, card);
+
     element.append(cardDiv);
 }
 
