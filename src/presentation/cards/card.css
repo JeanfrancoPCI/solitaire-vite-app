@@ -14,8 +14,7 @@
 }
 
 .front, .back {
-    position: float;
-    -webkit-backface-visibility: hidden; /* Safari */
+    position: absolute;
     backface-visibility: hidden;
 }
 
@@ -36,37 +35,41 @@
     width: 100px;
 }
 
-.group-1 {
+.column-1 {
     grid-column: 1;
     grid-row: 1;
 }
 
-.group-2 {
+.column-2 {
     grid-column: 2;
     grid-row: 1;
 }
 
-.group-3 {
+.column-2:not(:first-child) {
+    margin-top: -10px;
+}
+
+.column-3 {
     grid-column: 3;
     grid-row: 1;  
 }
 
-.group-4 {
+.column-4 {
     grid-column: 4;
     grid-row: 1;
 }
 
-.group-5 {
+.column-5 {
     grid-column: 5;
     grid-row: 1;
 }
 
-.group-6 {
+.column-6 {
     grid-column: 6;
     grid-row: 1;
 }
 
-.group-7 {
+.column-7 {
     grid-column: 7;
     grid-row: 1;
 }

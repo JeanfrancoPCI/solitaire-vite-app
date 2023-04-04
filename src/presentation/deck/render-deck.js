@@ -1,43 +1,51 @@
 import { Signs, Specials } from '../../models/enums';
 import { Card } from '../../models/card';
+import { Deck } from '../../models/deck';
+import { renderCard } from '../cards/render-cards';
 
 let deck;
+let column1;
+let column2;
+let column3;
+let column4;
+let column5;
+let column6;
+let column7;
 
-export const renderDeck = () => {
-    deck = createDeck();
-    console.log(deck);
-}
-
-const createDeck = (deck) => {
-
-    deck = [];
-
-    for( let type of Signs ) {
-
-        for( let special of Specials ) {
-            deck.push(new Card(special, type));
-        }
-
-        for( let i = 2; i <= 10; i++) {
-            deck.push(new Card(i, type));
-        }
-    }
-
-    // return shuffleDeck( deck );
-}
-
-const shuffleDeck = ( deck ) => {
-    let currentIndex = deck.length,  randomIndex;
-      
-    while (currentIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [deck[currentIndex], deck[randomIndex]] = [deck[randomIndex], deck[currentIndex]];
-     }
-      
-    return deck;
+export const renderDeck = (deckElement, cardsElement) => {
+    deck = new Deck();
+    distributeGroups(deck);
+    renderColumns(deck, cardsElement);
 }
 
 const distributeGroups = ( deck ) => {
-    
+
+    for (let i = 1; i <= 7; i++) {
+        deck["column-" + i] = createColumnCards(deck, i);
+    }
 } 
+
+const createColumnCards = ( deck, column ) => {
+
+    let cards = [];
+    for(let i = 0; i < column; i++) {
+        cards.push(deck.cards.pop());
+    }
+    cards[cards.length - 1].isVisible = true;
+    return cards;
+}   
+
+const renderColumns = ( deck, cardsElement ) => {
+
+    let cards = [];
+    let cardDiv;
+    for (let i = 1; i <= 7; i++) {
+        cards = deck["column-" + i];
+        for (let j = 0; j < cards.length; j++) {
+            cardDiv = renderCard(cards[j]);
+            cardDiv.classList.add(`column-${i}`);
+            cardDiv.setAttribute('z-index', j+1);
+            cardsElement.append(cardDiv);
+        }
+    }
+}

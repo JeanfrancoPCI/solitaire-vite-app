@@ -10,6 +10,7 @@ export const game = ( element ) => {
     element.innerHTML = html;
     const timer = document.querySelector('.timer');
     const cards = document.querySelector('.cards');
+    const deck = document.querySelector('.deck');
     timerComponent(timer);
     
     // const card = new Card('Q','H');
@@ -29,5 +30,5 @@ export const game = ( element ) => {
     // renderCard(cards, card7);
     // renderCard(cards, card8);
 
-    renderDeck();
+    renderDeck(deck, cards);
 };

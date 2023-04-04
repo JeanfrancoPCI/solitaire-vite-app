@@ -1,10 +1,15 @@
+import { Card } from "./card";
+import { Signs, Specials } from "./enums";
+
 export class Deck {
 
+    cards;
+
     constructor() {
-        this.cards = fillCards();
+        this.cards = this.fillCards();
     }
 
-    fillCards() {
+    fillCards = ( ) => {
         let cards = [];
         for( let type of Signs ) {
 
@@ -16,20 +21,19 @@ export class Deck {
                 cards.push(new Card(i, type));
             }
         }
-        this.shuffleCards();
-        return cards;
+        return this.shuffleCards(cards);
     }
 
-    shuffleCards = ( ) => {
-        let currentIndex = this.cards.length,  randomIndex;
+    shuffleCards = ( cards ) => {
+        let currentIndex = cards.length,  randomIndex;
           
         while (currentIndex != 0) {
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
-            [this.cards[currentIndex], 
-            this.cards[randomIndex]] = 
-                [this.cards[randomIndex], 
-                    this.cards[currentIndex]];
+            [cards[currentIndex], cards[randomIndex]] = 
+                [cards[randomIndex], cards[currentIndex]];
          }
+
+         return cards;
     }
 }

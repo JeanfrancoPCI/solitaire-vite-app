@@ -3,20 +3,26 @@ import './card.css';
 const pathAssetsCards = '../assets/cards';
 const svgBackCover = 'back-black.svg';
 
-export const renderCard = ( element, card ) => {
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('card');
-    cardDiv.setAttribute('data-id', card.value + card.sign)
+let cardDiv;
+
+export const renderCard = ( card ) => {
+    
+    cardDiv = showCard(card);
+
     cardDiv.addEventListener('click', () => {
         console.log('hola mundo');
         cardDiv.classList.toggle('flipCard');
     });
-    showCard(cardDiv, card);
 
-    element.append(cardDiv);
+    return cardDiv;
 }
 
-const showCard = ( divElement, card ) => {
+const showCard = ( card ) => {
+
+    cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
+    cardDiv.setAttribute('data-id', card.value + card.sign)
+
     const front = document.createElement('div');
     front.classList.add('front');
 
@@ -32,5 +38,7 @@ const showCard = ( divElement, card ) => {
     front.appendChild(imgFront);
     back.appendChild(imgBack);
 
-    divElement.append(front, back);
+    cardDiv.append(front, back);
+
+    return cardDiv;
 }
