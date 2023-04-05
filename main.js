@@ -2,7 +2,7 @@ import './style.css';
 import javascriptLogo from './javascript.svg';
 import viteLogo from '/vite.svg';
 import { renderMenuButtons } from './src/presentation/menu-buttons/render-menu-buttons';
-import { game } from './src/presentation/game/render-game';
+import { renderGame } from './src/presentation/game/render-game';
 
 document.querySelector('#app').innerHTML = `
   <div class="app">
@@ -26,4 +26,4 @@ document.querySelector('#app').innerHTML = `
 const menuButtons = document.querySelector('.menu-buttons');
 const divGame = document.querySelector('.game');
 renderMenuButtons(menuButtons);
-game(divGame);
+renderGame(divGame);

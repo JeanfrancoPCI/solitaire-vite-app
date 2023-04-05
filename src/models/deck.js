@@ -3,8 +3,6 @@ import { Signs, Specials } from "./enums";
 
 export class Deck {
 
-    cards;
-
     constructor() {
         this.cards = this.fillCards();
     }

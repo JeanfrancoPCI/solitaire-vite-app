@@ -1,32 +1,23 @@
 import html  from "./game.html?raw";
 import './game.css';
-import { timerComponent } from "../timer/reder-timer";
+import { renderTimer } from "../timer/render-timer";
 import { renderDeck } from "../deck/render-deck";
+import { renderColumnCards } from "../columns/render-column";
+import { Game } from "../../models/game";
 
-export const game = ( element ) => {
+let game;
+
+export const renderGame = ( element ) => {
 
     element.innerHTML = html;
-    const timer = document.querySelector('.timer');
-    const cards = document.querySelector('.cards');
-    const deck = document.querySelector('.deck');
-    timerComponent(timer);
-    
-    // const card = new Card('Q','H');
-    // const card2 = new Card('10','C');
-    // const card3 = new Card('A','S');
-    // const card4 = new Card('9','D');
-    // const card5 = new Card('3','C');
-    // const card6 = new Card('2','S');
-    // const card7 = new Card('K','D');
-    // const card8 = new Card('5','H');
-    // renderCard(cards, card);
-    // renderCard(cards, card2);
-    // renderCard(cards, card3);
-    // renderCard(cards, card4);
-    // renderCard(cards, card5);
-    // renderCard(cards, card6);
-    // renderCard(cards, card7);
-    // renderCard(cards, card8);
+    const timerDiv = document.querySelector('.timer');
+    const columnsDiv = document.querySelector('.columns');
+    const deckDiv = document.querySelector('.deck');
 
-    renderDeck(deck, cards);
+    game = new Game();
+
+    renderTimer(timerDiv, game.timer);
+    renderDeck(deckDiv, game.deck);
+    renderColumnCards(columnsDiv, game.columns);
+
 };
