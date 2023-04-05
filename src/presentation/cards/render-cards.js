@@ -4,12 +4,9 @@ import './card.css';
 const pathAssetsCards = '../assets/cards';
 const svgBackCover = 'back-black.svg';
 
-let front, back;
-let id, sign, value;
-
 export const renderCard = ( card ) => {
 
-    const cardDiv = document.createElement('div');
+    let cardDiv = document.createElement('div');
     cardDiv.setAttribute('data-id', card.value + card.sign)
 
     if ( !card.isVisible) {
@@ -19,43 +16,28 @@ export const renderCard = ( card ) => {
         createFrontCover(card.value, card.sign, cardDiv);
     }
 
-    cardDiv.addEventListener('click', () => {
+    cardDiv.addEventListener('click', () => flipCard(card.value + card.sign));
+    return cardDiv;
+}
 
-        const cards = document.querySelector('.cards');
-        cards.getElementsByClassName
-        
-        
-        if (!cardDiv.getAttribute('data-id')) {
-            back = cardDiv.getElementsByClassName('back')[0];
-            id = back.getAttribute('data-id');
-        }
-        else
-            id = cardDiv.getAttribute('data-id');
-
-        sign = id.substring(id.length - 1);
-        value = id.replace(sign, '');
-
-        if (!cardDiv.classList.contains('flipCard')) {
-            createBackCover(cardDiv);
-            back = cardDiv.getElementsByClassName('back')[0];
-            back.setAttribute('data-id', id);
-            cardDiv.setAttribute('data-id','');
-            front = cardDiv.getElementsByClassName('front')[0];
-            setTimeout(()=>{
-                cardDiv.removeChild(front);
-            }, 100)
-        } else {            
-            createFrontCover(value, sign, cardDiv);  
-            cardDiv.setAttribute('data-id',id);   
-            back = cardDiv.getElementsByClassName('back')[0];
-            setTimeout(()=>{                
-                cardDiv.removeChild(back);
-            }, 100)
-        }
-            
-        cardDiv.classList.toggle('flipCard');
-    });
-
+const flipCard = (id) => {
+    console.log(id);
+    let element;
+    let cardDiv = document.querySelector('#' + id);
+    let sign = id.substring(id.length - 1);
+    let value = id.replace(sign, '');
+    if (!cardDiv.classList.contains('flipCard')) {
+        element = 'front';
+        createBackCover(cardDiv);
+        cardDiv.getElementsByClassName('back')[0].setAttribute('data-id', id);
+        id = ''
+    } else {        
+        element = 'back';
+        createFrontCover(value, sign, cardDiv); 
+    }
+    removePreviousChild(cardDiv, element)
+    cardDiv.setAttribute('data-id',id);
+    cardDiv.classList.toggle('flipCard'); 
     return cardDiv;
 }
 
@@ -79,4 +61,17 @@ const createBackCover = ( divElement ) => {
     
     back.appendChild(imgBack);
     divElement.append(back);
+}
+
+const removePreviousChild = ( divElement, classCss ) => {
+    const element = divElement.getElementsByClassName(classCss)[0];
+    setTimeout(()=>{    
+        divElement.removeChild(element);
+    }, 100)
+}
+
+const getIdCard = ( divElement ) => {
+    return !divElement.getAttribute('data-id') ? 
+        divElement.getElementsByClassName('back')[0].getAttribute('data-id') : 
+        divElement.getAttribute('data-id');
 }
