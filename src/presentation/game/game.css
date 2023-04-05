@@ -31,7 +31,7 @@
     grid-column: 1 / 5;
     grid-row: 2; 
     border: 1px solid white;
-    min-height: 400px;
+    /* min-height: 400px; */
 }
 
 .timer {

@@ -7,23 +7,25 @@
     width: 100%;
 }
 
-.card {
+.card-column {
     position: relative;
     transform-style: preserve-3d;
     transition: all 0.5s ease;
+    padding: 2px;
 }
 
 .front, .back {
     position: absolute;
+    margin-top: 5px;
     backface-visibility: hidden;
 }
 
 .front {
-    margin-top: 5px;
+    margin-left: 10px;
 }
 
 .back {
-    margin-top: -145px;
+    /* margin-left: -2px; */
     transform: rotateY(180deg);
 }
 
@@ -32,7 +34,8 @@
 }
 
 .front > img, .back > img {
-    width: 100px;
+    width: 95px;
+    height: 137px;
 }
 
 .column-1 {
@@ -45,14 +48,16 @@
     grid-row: 1;
 }
 
-.column-2:not(:first-child) {
-    margin-top: -10px;
-}
+/* 
+.column-2 ~ .column-2 {
+    margin-top: 20px;
+} */
 
 .column-3 {
     grid-column: 3;
     grid-row: 1;  
 }
+
 
 .column-4 {
     grid-column: 4;

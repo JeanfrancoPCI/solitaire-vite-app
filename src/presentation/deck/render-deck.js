@@ -4,13 +4,6 @@ import { Deck } from '../../models/deck';
 import { renderCard } from '../cards/render-cards';
 
 let deck;
-let column1;
-let column2;
-let column3;
-let column4;
-let column5;
-let column6;
-let column7;
 
 export const renderDeck = (deckElement, cardsElement) => {
     deck = new Deck();
@@ -37,14 +30,18 @@ const createColumnCards = ( deck, column ) => {
 
 const renderColumns = ( deck, cardsElement ) => {
 
+    let margin = 20;
     let cards = [];
     let cardDiv;
     for (let i = 1; i <= 7; i++) {
         cards = deck["column-" + i];
         for (let j = 0; j < cards.length; j++) {
             cardDiv = renderCard(cards[j]);
+            cardDiv.classList.add('card-column');
             cardDiv.classList.add(`column-${i}`);
             cardDiv.setAttribute('z-index', j+1);
+            cardDiv.style.marginTop = (j + 1) * margin + 'px';
+
             cardsElement.append(cardDiv);
         }
     }
