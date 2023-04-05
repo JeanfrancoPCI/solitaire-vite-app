@@ -1,8 +1,6 @@
 import html  from "./game.html?raw";
 import './game.css';
 import { timerComponent } from "../timer/reder-timer";
-import { renderCard } from "../cards/render-cards";
-import { Card } from '../../models/card';
 import { renderDeck } from "../deck/render-deck";
 
 export const game = ( element ) => {

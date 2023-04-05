@@ -4,7 +4,7 @@ import './card.css';
 const pathAssetsCards = '../assets/cards';
 const svgBackCover = 'back-black.svg';
 
-export const renderCard = ( card ) => {
+export const renderCardColumn = ( card ) => {
 
     let cardDiv = document.createElement('div');
     cardDiv.setAttribute('data-id', card.value + card.sign)
@@ -16,14 +16,12 @@ export const renderCard = ( card ) => {
         createFrontCover(card.value, card.sign, cardDiv);
     }
 
-    cardDiv.addEventListener('click', () => flipCard(card.value + card.sign));
+    cardDiv.addEventListener('click', () => flipCard(cardDiv, card.value + card.sign));
     return cardDiv;
 }
 
-const flipCard = (id) => {
-    console.log(id);
+const flipCard = (cardDiv, id) => {
     let element;
-    let cardDiv = document.querySelector('#' + id);
     let sign = id.substring(id.length - 1);
     let value = id.replace(sign, '');
     if (!cardDiv.classList.contains('flipCard')) {
@@ -70,8 +68,8 @@ const removePreviousChild = ( divElement, classCss ) => {
     }, 100)
 }
 
-const getIdCard = ( divElement ) => {
-    return !divElement.getAttribute('data-id') ? 
-        divElement.getElementsByClassName('back')[0].getAttribute('data-id') : 
-        divElement.getAttribute('data-id');
-}
+// const getIdCard = ( divElement ) => {
+//     return !divElement.getAttribute('data-id') ? 
+//         divElement.getElementsByClassName('back')[0].getAttribute('data-id') : 
+//         divElement.getAttribute('data-id');
+// }

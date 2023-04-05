@@ -1,7 +1,5 @@
-import { Signs, Specials } from '../../models/enums';
-import { Card } from '../../models/card';
 import { Deck } from '../../models/deck';
-import { renderCard } from '../cards/render-cards';
+import { renderCardColumn } from '../cards/render-card-column';
 
 let deck;
 
@@ -36,7 +34,7 @@ const renderColumns = ( deck, cardsElement ) => {
     for (let i = 1; i <= 7; i++) {
         cards = deck["column-" + i];
         for (let j = 0; j < cards.length; j++) {
-            cardDiv = renderCard(cards[j]);
+            cardDiv = renderCardColumn(cards[j]);
             cardDiv.classList.add('card-column');
             cardDiv.classList.add(`column-${i}`);
             cardDiv.setAttribute('z-index', j+1);
