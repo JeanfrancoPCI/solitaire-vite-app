@@ -5,15 +5,19 @@ const svgBackCover = 'back-black.svg';
 
 export const renderCard = ( card ) => {
     let cardDiv = document.createElement('div');
-    cardDiv.classList.add('card-column');
-    cardDiv.setAttribute('data-id', card.value + card.sign)
+    let id = card.value + card.sign;
+    cardDiv.classList.add('card');
+    cardDiv.setAttribute('data-id', id)
+    cardDiv.setAttribute('draggable', true);
 
     if ( !card.isVisible) {
         createBackCover(cardDiv);
         cardDiv.classList.add('flipCard');
     } else {
-        createFrontCover(card.value + card.sign, cardDiv);
+        createFrontCover(id, cardDiv);
     }
+
+    cardDiv.addEventListener('dragstart', dragStart);
     return cardDiv;
 }
 
@@ -37,6 +41,17 @@ const createBackCover = ( divElement ) => {
     
     back.appendChild(imgBack);
     divElement.append(back);
+}
+
+const dragStart = (event) => {
+    console.log('drag starts ....');
+    let id = event.target.closest('.card').getAttribute('data-id');
+    console.log(id);
+    event.dataTransfer.setData('cardid', id);
+    event.dataTransfer.effectAllowed = "move";
+    setTimeout(() => {
+        event.target.classList.add('hide');
+    }, 0);
 }
 
 

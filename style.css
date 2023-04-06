@@ -122,3 +122,7 @@ button:focus-visible {
   grid-column: 1 / 4;
   grid-row: 7;
 }
+
+.hide {
+  display: none;
+}
