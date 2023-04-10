@@ -2,7 +2,7 @@ import html  from "./game.html?raw";
 import './game.css';
 import { renderTimer } from "../timer/render-timer";
 import { renderDeck } from "../deck/render-deck";
-import { renderColumnCards } from "../columns/render-column";
+import { renderColumnsCards } from "../columns/render-column";
 import { Game } from "../../models/game";
 
 let game;
@@ -18,6 +18,6 @@ export const renderGame = ( element ) => {
 
     renderTimer(timerDiv, game.timer);
     renderDeck(deckDiv, game.deck);
-    renderColumnCards(columnsDiv, game.columns);
+    renderColumnsCards(columnsDiv, game.columns);
 
 };

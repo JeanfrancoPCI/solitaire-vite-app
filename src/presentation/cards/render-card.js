@@ -13,11 +13,19 @@ export const renderCard = ( card ) => {
     if ( !card.isVisible) {
         createBackCover(cardDiv);
         cardDiv.classList.add('flipCard');
+        cardDiv.addEventListener('click', () => flipCard(cardDiv, card.value + card.sign));
     } else {
         createFrontCover(id, cardDiv);
+        cardDiv.addEventListener('dragstart', (event) => {
+            console.log('drag starts ....');
+            console.log(id);
+            event.dataTransfer.setData('cardid', id);
+            setTimeout(() => {
+                event.target.closest('.card').classList.add('hide');
+            }, 0);
+        });
     }
-
-    cardDiv.addEventListener('dragstart', dragStart);
+    
     return cardDiv;
 }
 
@@ -43,42 +51,30 @@ const createBackCover = ( divElement ) => {
     divElement.append(back);
 }
 
-const dragStart = (event) => {
-    console.log('drag starts ....');
-    let id = event.target.closest('.card').getAttribute('data-id');
-    console.log(id);
-    event.dataTransfer.setData('cardid', id);
-    event.dataTransfer.effectAllowed = "move";
-    setTimeout(() => {
-        event.target.classList.add('hide');
-    }, 0);
+const flipCard = (cardDiv, value, sign) => {
+    let element;
+    if (!cardDiv.classList.contains('flipCard')) {
+        element = 'front';
+        createBackCover(cardDiv);
+        cardDiv.getElementsByClassName('back')[0].setAttribute('data-id', value +  sign);
+        id = ''
+    } else {        
+        element = 'back';
+        createFrontCover(value, sign, cardDiv); 
+    }
+    removePreviousChild(cardDiv, element)
+    cardDiv.setAttribute('data-id', value +  sign);
+    cardDiv.classList.toggle('flipCard');
 }
 
-
-// const images = document.querySelectorAll("img");
-// const containers = document.querySelectorAll(".container");
-
-// images.forEach((image) => {
-//   image.addEventListener("dragstart", dragStart);
-//   image.addEventListener("dragend", dragEnd);
-// });
-
-// containers.forEach((container) => {
-//   container.addEventListener("dragover", dragOver);
-//   container.addEventListener("drop", drop);
-// });
-
-// function dragStart(event) {
-//   event.dataTransfer.setData("draggedImageId", event.target.id);
-//   setTimeout(() => event.target.classList.toggle("hidden"));
-// }
-
-// function dragEnd(event) {
-//   event.target.classList.toggle("hidden");
-// }
-
-// function dragOver(event) {
-//   event.preventDefault();
+// const dragStart = (event) => {
+//     console.log('drag starts ....');
+//     let id = event.target.closest('.card').getAttribute('data-id');
+//     console.log(id);
+//     event.dataTransfer.setData('text/plain', id);
+//     setTimeout(() => {
+//         event.target.closest('.card').classList.add('hide');
+//     }, 0);
 // }
 
 // function drop(event) {

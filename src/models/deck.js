@@ -16,7 +16,7 @@ export class Deck {
             }
     
             for( let i = 2; i <= 10; i++) {
-                cards.push(new Card(i, type));
+                cards.push(new Card(`${ i }`, type));
             }
         }
         return this.shuffleCards(cards);

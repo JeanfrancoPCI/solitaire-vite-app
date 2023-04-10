@@ -6,6 +6,10 @@ export class Column {
         this.cards = cards;
     }
 
+    searchIndexCard(value, sign) {
+        return this.cards.findIndex(card => card.sign === sign && card.value === value);
+    }
+
     evalMove(cards) {
         const newCard = cards[0];
         const lastCard = this.cards[this.cards.length - 1];
@@ -15,4 +19,6 @@ export class Column {
         else
             return false;
     }
+
+    static
 }
