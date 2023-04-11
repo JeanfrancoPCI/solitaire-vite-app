@@ -1,5 +1,5 @@
 import { Card } from "./card";
-import { Signs, Specials } from "./enums";
+import { HandType, Signs, Specials } from "./enums";
 
 export class Deck {
 
@@ -33,5 +33,21 @@ export class Deck {
          }
 
          return cards;
+    }
+
+    pickCards = ( handType ) => {
+        let cards = [];
+        let cardsNumber = () => { 
+            switch(handType) {
+                case HandType.Single:
+                    return 1;
+                case HandType.Triple:
+                    return 3;
+            }
+        }
+
+        for (let i = 0; i < cardsNumber; i++) {
+            cards.push(this.cards.pop);
+        }
     }
 }

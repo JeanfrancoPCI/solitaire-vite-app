@@ -26,4 +26,4 @@ document.querySelector('#app').innerHTML = `
 const menuButtons = document.querySelector('.menu-buttons');
 const divGame = document.querySelector('.game');
 renderMenuButtons(menuButtons);
-renderGame(divGame);
+renderGame(divGame, 3);

@@ -7,14 +7,14 @@ import { Game } from "../../models/game";
 
 let game;
 
-export const renderGame = ( element ) => {
+export const renderGame = ( element, handType ) => {
 
     element.innerHTML = html;
     const timerDiv = document.querySelector('.timer');
     const columnsDiv = document.querySelector('.columns');
     const deckDiv = document.querySelector('.deck');
 
-    game = new Game();
+    game = new Game(handType);
 
     renderTimer(timerDiv, game.timer);
     renderDeck(deckDiv, game.deck);

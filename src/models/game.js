@@ -11,8 +11,9 @@ export class Game {
     cards;
     columns;
     groups;
+    handType;
 
-    constructor() {
+    constructor(handType) {
         this.timer = new Timer();
         this.deck = new Deck();
         this.cards = [];
@@ -20,6 +21,7 @@ export class Game {
         this.createGroups();
         this.columns = [];
         this.distributeColumns();
+        this.handType = handType;
     }
 
     createGroups() {
@@ -38,9 +40,11 @@ export class Game {
     createColumnCards( column ) {
         let cards = [];
         for(let i = 0; i < column; i++) {
-            cards.push(this.deck.cards.pop());
+            let card = this.deck.cards.pop();
+            card.isVisible = true;
+            cards.push(card);
         }
         cards[cards.length - 1].isVisible = true;
         return cards;
-    } 
+    }
 }
