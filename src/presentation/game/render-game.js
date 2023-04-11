@@ -16,8 +16,10 @@ export const renderGame = ( element, handType ) => {
 
     game = new Game(handType);
 
-    renderTimer(timerDiv, game.timer);
-    renderDeck(deckDiv, game.deck);
-    renderColumnsCards(columnsDiv, game.columns);
+    renderTimer(timerDiv, game);
+    renderDeck(deckDiv, game);
+    renderColumnsCards(columnsDiv, game);
 
+    console.log('game', game);
+    window.game = game;
 };

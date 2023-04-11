@@ -1,6 +1,6 @@
 import './timer.css';
 
-export const renderTimer = ( element, timer) => {
+export const renderTimer = ( element, game) => {
 
     const labelTime = document.createElement('label');
     labelTime.innerHTML = 'Tiempo: ';
@@ -8,6 +8,6 @@ export const renderTimer = ( element, timer) => {
 
     element.append(labelTime);
 
-    timer.init(spanTimeLeft);
+    game.timer.init(spanTimeLeft);
     element.append(spanTimeLeft);
 }

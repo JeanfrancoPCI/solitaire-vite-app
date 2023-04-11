@@ -3,6 +3,7 @@ import javascriptLogo from './javascript.svg';
 import viteLogo from '/vite.svg';
 import { renderMenuButtons } from './src/presentation/menu-buttons/render-menu-buttons';
 import { renderGame } from './src/presentation/game/render-game';
+import { HandType } from './src/models/enums';
 
 document.querySelector('#app').innerHTML = `
   <div class="app">
@@ -26,4 +27,4 @@ document.querySelector('#app').innerHTML = `
 const menuButtons = document.querySelector('.menu-buttons');
 const divGame = document.querySelector('.game');
 renderMenuButtons(menuButtons);
-renderGame(divGame, 3);
+renderGame(divGame, HandType.Triple);

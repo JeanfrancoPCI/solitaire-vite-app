@@ -27,11 +27,12 @@ export class Group {
     //         throw new Error('Movimiento de carta inválido.');
     // }
 
-    // moveToColumn(column) {
+    moveToColumn(column) {
 
-    //     let card = this.cards[this.cards.length - 1];
-    //     if ( column.evalMove(card) ) {
-
-    //     }           
-    // }
+        let card = this.cards[this.cards.length - 1];
+        if ( column.evalMove(card) ) {
+            column.cards.push(this.cards.pop());
+        } else
+            throw new Error('Movimiento de carta a columna inválido.');           
+    }
 }

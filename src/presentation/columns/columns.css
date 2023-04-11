@@ -11,8 +11,8 @@
 .column-grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto, minmax(auto, 1fr)) 150px;
-    grid-gap: 15px;
+    grid-template-rows: repeat(13, minmax(auto, 1fr)) 150px;
+    grid-gap: 20px;
     height: 100%;
     border: 1px solid white;
     margin: 2px;

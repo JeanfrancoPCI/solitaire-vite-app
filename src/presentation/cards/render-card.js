@@ -10,16 +10,15 @@ export const renderCard = ( card ) => {
     cardDiv.setAttribute('data-id', id)
     cardDiv.setAttribute('draggable', true);
 
-    if ( !card.isVisible) {
+    if ( !card.isVisible ) {
         createBackCover(cardDiv);
         cardDiv.classList.add('flipCard');
-        cardDiv.addEventListener('click', () => flipCard(cardDiv, card.value + card.sign));
+        cardDiv.addEventListener('click', () => flipCard(id, cardDiv));
     } else {
         createFrontCover(id, cardDiv);
         cardDiv.addEventListener('dragstart', (event) => {
             console.log('drag starts ....');
             console.log(id);
-            event.dataTransfer.setData('cardid', id);
             setTimeout(() => {
                 event.target.closest('.card').classList.add('hide');
             }, 0);
@@ -51,40 +50,25 @@ const createBackCover = ( divElement ) => {
     divElement.append(back);
 }
 
-const flipCard = (cardDiv, value, sign) => {
+const flipCard = (id, cardDiv) => {
     let element;
     if (!cardDiv.classList.contains('flipCard')) {
         element = 'front';
         createBackCover(cardDiv);
-        cardDiv.getElementsByClassName('back')[0].setAttribute('data-id', value +  sign);
+        cardDiv.getElementsByClassName('back')[0].setAttribute('data-id', id);
         id = ''
     } else {        
         element = 'back';
-        createFrontCover(value, sign, cardDiv); 
+        createFrontCover(id, cardDiv); 
     }
     removePreviousChild(cardDiv, element)
-    cardDiv.setAttribute('data-id', value +  sign);
+    cardDiv.setAttribute('data-id', id);
     cardDiv.classList.toggle('flipCard');
 }
 
-// const dragStart = (event) => {
-//     console.log('drag starts ....');
-//     let id = event.target.closest('.card').getAttribute('data-id');
-//     console.log(id);
-//     event.dataTransfer.setData('text/plain', id);
-//     setTimeout(() => {
-//         event.target.closest('.card').classList.add('hide');
-//     }, 0);
-// }
-
-// function drop(event) {
-//   const draggedImageId = event.dataTransfer.getData("draggedImageId");
-//   const draggedImage = document.getElementById(draggedImageId);
-//   const fromContainer = draggedImage.parentNode;
-//   const toContainer = event.currentTarget;
-
-//   if (toContainer !== fromContainer) {
-//     fromContainer.appendChild(toContainer.firstElementChild);
-//     toContainer.appendChild(draggedImage);
-//   }
-// }
+const removePreviousChild = ( divElement, classCss ) => {
+    const element = divElement.getElementsByClassName(classCss)[0];
+    setTimeout(()=>{    
+        divElement.removeChild(element);
+    }, 100)
+}

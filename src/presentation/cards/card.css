@@ -4,7 +4,7 @@
     transform-style: preserve-3d;
     transition: all 0.5s ease;
     padding: 2px;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
 .front, .back {
@@ -13,9 +13,9 @@
     backface-visibility: hidden;
 }
 
-/* .front {
+.front {
     margin-left: 5px;
-} */
+}
 
 .back {
     margin-left: 5px;

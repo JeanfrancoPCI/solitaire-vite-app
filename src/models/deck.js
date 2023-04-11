@@ -37,14 +37,7 @@ export class Deck {
 
     pickCards = ( handType ) => {
         let cards = [];
-        let cardsNumber = () => { 
-            switch(handType) {
-                case HandType.Single:
-                    return 1;
-                case HandType.Triple:
-                    return 3;
-            }
-        }
+        let cardsNumber = handType;
 
         for (let i = 0; i < cardsNumber; i++) {
             cards.push(this.cards.pop);

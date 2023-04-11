@@ -20,11 +20,10 @@ export class Column {
                 return false;
         } else {
             return card.number === 13;
-        };
+        }
     }
 
     moveCardsTo(indexFrom) {
-
         let i = 0;
         let cardsMove = this.cards.map((card, index) => {
             if (index >= indexFrom) {
@@ -33,9 +32,13 @@ export class Column {
                 return card;
             }
         });
+        console.log('cardsMove', cardsMove);
+        console.log('index', i);
 
         if ( cardsMove.length === i) {
             this.cards.splice(indexFrom);
+            if ( this.cards.length > 0)
+                this.cards[this.cards.length - 1].isVisible = true;
         } else
             throw new Error('Todas las cartas a mover deben estar visibles.')
 
@@ -55,7 +58,7 @@ export class Column {
     moveToGroup(group) {
         let card = this.cards[this.cards.length - 1];
         if( group.evalMove(card) ) {
-            group.cards.push(card);
+            group.cards.push(this.cards.pop());
         } else
             throw new Error('Movimiento de carta inválido.');
     }

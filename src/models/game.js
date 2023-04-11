@@ -41,7 +41,6 @@ export class Game {
         let cards = [];
         for(let i = 0; i < column; i++) {
             let card = this.deck.cards.pop();
-            card.isVisible = true;
             cards.push(card);
         }
         cards[cards.length - 1].isVisible = true;
