@@ -23,8 +23,28 @@ const renderColumnCards = (divElement, columns, i) => {
     divColumn.addEventListener('dragover', dragOver);
     divColumn.addEventListener('dragleave', dragLeave);
     divColumn.addEventListener('drop', () => { drop(event, columns) });
+    // divColumn.addEventListener('dragend', dragEnd);
 
     divElement.append(divColumn);  
+}
+
+const refreshColumnCards = (divColumn, columns, i) => {
+    let cardsDiv = divColumn.children;
+    let cards = columns[i].cards;
+
+    if ( cardsDiv.length > cards.length ) {
+        
+        cardsDiv.forEach((div, index) => {
+            if (index > cards.length -1) {
+                divColumn.removeChild(div);
+            }
+        });
+    } else {
+        for ( let i = cardsDiv.length; i <= cards.length - 1; i++) {
+            let card = cards[i];
+            divColumn.append(renderCard(card));
+        }
+    }
 }
 
 const dragEnter = (event) => {
@@ -48,18 +68,19 @@ const drop = (event, columns) => {
     console.log('drop enter');
     let card = dragEvent(event);
     card.classList.remove('drag-over');
-    let cardFrom = document.querySelector('.hide')
+    let cardFrom = document.querySelector('.hide');
+    // console.log('cardFrom', cardFrom);
     cardFrom.classList.remove('hide');
 
-    console.log('card', card);
-    console.log('card2', cardFrom);
+    // console.log('card', card);
+    // console.log('card2', cardFrom);
 
     console.log('parent', card.parentElement);
     let cardColumn1 = (card.parentElement).parentElement;
     let cardColumn2 = cardFrom.parentElement;
 
-    console.log('cardColumn1', cardColumn1);
-    console.log('cardColumn2', cardColumn2);
+    // console.log('cardColumn1', cardColumn1);
+    // console.log('cardColumn2', cardColumn2);
 
     let id = card.parentElement.getAttribute('data-id');
     let sign = id.substring(id.length - 1);
@@ -69,18 +90,17 @@ const drop = (event, columns) => {
     let sign2 = id2.substring(id2.length-1);
     let value2 = id2.replace(sign2, '');
 
-    console.log('id', id);
-    console.log('id2', id2);
-    console.log('sign', sign);
-    console.log('sign2', sign2);
-    console.log('value', value);
-    console.log('value2', value2);
+    // console.log('id', id);
+    // console.log('id2', id2);
+    // console.log('sign', sign);
+    // console.log('sign2', sign2);
+    // console.log('value', value);
+    // console.log('value2', value2);
 
     let indexColumn1 = -1, indexColumn2 = -1;
     let indexCard1 = -1, indexCard2 = -1;
     
     for (let index in columns) {
-        console.log('index', index);
         if ( indexCard1 === -1 )
             indexCard1 = columns[index].searchIndexCard(value, sign);
 
@@ -98,27 +118,32 @@ const drop = (event, columns) => {
             break;
     }
 
-    console.log('indexCard1', indexCard1);
-    console.log('indexCard2', indexCard2);
-    console.log('indexColumn1', indexColumn1);
-    console.log('indexColumn2', indexColumn2);
+    // console.log('indexCard1', indexCard1);
+    // console.log('indexCard2', indexCard2);
+    // console.log('indexColumn1', indexColumn1);
+    // console.log('indexColumn2', indexColumn2);
 
     if ( indexColumn1 != indexColumn2 ) {
         let cardMoved = columns[indexColumn2].cards.pop();
-        console.log('cardMoved', cardMoved);
+        // console.log('cardMoved', cardMoved);
         columns[indexColumn1].cards.push(cardMoved);
 
         cardColumn1.append(cardFrom);
-        console.log('cardColumn', cardColumn1);
-        console.log('cardColumn2', cardColumn2);
+        // console.log('cardColumn', cardColumn1);
+        // console.log('cardColumn2', cardColumn2);
     } 
 
-    console.log('columns', columns);
+    // console.log('columns', columns);
+}
+
+const dragEnd = (event) => {
+    let dragDiv = document.querySelector('.drag-element');
+    dragDiv.innerHTML = '';
 }
 
 const dragEvent = (event) => {
     let columnDiv;
-    console.log('drag enter');
+    //console.log('drag enter');
     if ( !event.target.classList.contains('column-grid') ) {
         columnDiv = event.target.closest('.column-grid');
     } else

@@ -16,13 +16,10 @@ export const renderCard = ( card ) => {
         cardDiv.addEventListener('click', () => flipCard(id, cardDiv));
     } else {
         createFrontCover(id, cardDiv);
-        cardDiv.addEventListener('dragstart', (event) => {
-            console.log('drag starts ....');
-            console.log(id);
-            setTimeout(() => {
-                event.target.closest('.card').classList.add('hide');
-            }, 0);
-        });
+        // cardDiv.addEventListener('drag', drag);
+        cardDiv.addEventListener('dragstart', dragStart);
+        cardDiv.addEventListener('mouseover', mouseOver);
+        cardDiv.addEventListener('mouseout', mouseOut);
     }
     
     return cardDiv;
@@ -48,6 +45,84 @@ const createBackCover = ( divElement ) => {
     
     back.appendChild(imgBack);
     divElement.append(back);
+}
+
+const drag = (event) => {
+    console.log('drag');
+    // let divCard = event.target.closest('.card');
+    // let columnDiv = divCard.parentElement;
+    // let indexCard = Array.from(columnDiv.children).indexOf(divCard);
+
+    let dragDiv = document.querySelector('.drag-element');
+    // let dragDiv = document.createElement('div');
+    // dragDiv.id = 'drag-host';
+    // dragDiv.classList.add('drag-element');
+
+    // Array.from(columnDiv.children).forEach((div, index) => {
+    //     if (index >= indexCard) {
+    //         dragDiv.append(div.cloneNode(true));
+    //     }
+    // }); 
+
+    // setTimeout(() => {
+        event.dataTransfer.setDragImage(dragDiv, 0, 0);
+        console.log('dragDiv', dragDiv);
+    // },0);
+}
+
+const dragStart = (event) => {
+    // console.log('drag starts ....');
+    // let dragDiv = document.querySelector('.drag-element');
+
+    let divCard = event.target.closest('.card');
+
+    let dragDiv = document.querySelector('#drag-host');
+    // let dragDiv = document.createElement('div');
+    // dragDiv.innerHTML = '';
+    // dragDiv.classList.add('drag-element');
+    // dragDiv.style.position = "absolute";
+    // dragDiv.style.top = "-1000px";
+    
+    let columnDiv = divCard.parentElement;
+    let indexCard = Array.from(columnDiv.children).indexOf(divCard);
+                
+    setTimeout( () => {
+        Array.from(columnDiv.children).forEach((div, index) => {
+            if (index >= indexCard) {
+                div.classList.add('hide');
+            }
+        });
+    }, 0)
+    
+    event.dataTransfer.setDragImage(dragDiv, 50, 50);
+    // console.log('dragDiv', dragDiv);
+}
+
+const mouseOver = (event) => {
+    let dragDiv = document.createElement('div');
+    dragDiv.id = 'drag-host'
+    dragDiv.classList.add('drag-element');
+    // dragDiv.style.position = "absolute";
+    // dragDiv.style.top = "-1000px";
+    
+    let divCard = event.target.closest('.card');
+    let columnDiv = divCard.parentElement;
+    let indexCard = Array.from(columnDiv.children).indexOf(divCard);
+
+    Array.from(columnDiv.children).forEach((div, index) => {
+        if (index >= indexCard) {
+            dragDiv.append(div.cloneNode(true));
+        }
+    })
+
+    document.body.append(dragDiv);
+    // console.log('dragDiv', dragDiv);
+}
+
+const mouseOut = (event) => {
+    let dragDiv = document.querySelectorAll('#drag-host');
+    let parent = dragDiv[0].parentElement;
+    dragDiv.forEach( element => parent.removeChild(element));
 }
 
 const flipCard = (id, cardDiv) => {

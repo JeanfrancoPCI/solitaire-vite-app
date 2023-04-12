@@ -57,7 +57,7 @@ export class Column {
 
     moveToGroup(group) {
         let card = this.cards[this.cards.length - 1];
-        if( group.evalMove(card) ) {
+        if ( group.evalMove(card) ) {
             group.cards.push(this.cards.pop());
         } else
             throw new Error('Movimiento de carta inválido.');

@@ -1,6 +1,6 @@
 
 .card {
-    position: relative;
+    /* position: relative; */
     transform-style: preserve-3d;
     transition: all 0.5s ease;
     padding: 2px;
@@ -9,16 +9,16 @@
 
 .front, .back {
     position: absolute;
-    margin-top: 5px;
+    padding-top: 5px;
     backface-visibility: hidden;
 }
 
 .front {
-    margin-left: 5px;
+    padding-left: 2px;
 }
 
 .back {
-    margin-left: 5px;
+    padding-right: 2px;
     transform: rotateY(180deg);
 }
 
