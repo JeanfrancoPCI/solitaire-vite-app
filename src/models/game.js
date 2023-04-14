@@ -31,7 +31,7 @@ export class Game {
     }
 
     distributeColumns() {
-        for (let i = 1; i <= 7; i++) {
+        for (let i = 0; i <= 6; i++) {
             let cards = this.createColumnCards(i);
             this.columns.push(new Column(i, cards));
         }
@@ -39,7 +39,7 @@ export class Game {
 
     createColumnCards( column ) {
         let cards = [];
-        for(let i = 0; i < column; i++) {
+        for(let i = 0; i < column + 1; i++) {
             let card = this.deck.cards.pop();
             cards.push(card);
         }

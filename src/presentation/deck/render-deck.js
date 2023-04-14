@@ -1,10 +1,16 @@
 import { Deck } from '../../models/deck';
+import { renderCard } from '../cards/render-card';
 
 let deck;
 
-export const renderDeck = (deckElement, deck) => {
+export const renderDeck = (deckElement, game) => {
     // distributeGroups(deck);
     // renderColumns(deck, cardsElement);
+
+    for (let card of game.deck.cards) {
+        console.log('card', card);
+        deckElement.append(renderCard(card));
+    }
 }
 
 // const distributeGroups = ( deck ) => {

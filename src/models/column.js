@@ -25,20 +25,22 @@ export class Column {
 
     moveCardsTo(indexFrom) {
         let i = 0;
-        let cardsMove = this.cards.map((card, index) => {
+        let cardsMove = this.cards.filter((card, index) => {
             if (index >= indexFrom) {
-                if (card.isVisible)
+                if (card.isVisible) {
                     i++;
+                }
                 return card;
             }
         });
-        console.log('cardsMove', cardsMove);
-        console.log('index', i);
+        // console.log('cardsMove', cardsMove);
+        // console.log('index', i);
 
         if ( cardsMove.length === i) {
             this.cards.splice(indexFrom);
-            if ( this.cards.length > 0)
+            if ( this.cards.length > 0) {
                 this.cards[this.cards.length - 1].isVisible = true;
+            }
         } else
             throw new Error('Todas las cartas a mover deben estar visibles.')
 

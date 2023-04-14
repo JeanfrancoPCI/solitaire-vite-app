@@ -127,14 +127,13 @@ button:focus-visible {
   margin-top: 10px;
   grid-column: 1;
   grid-row: 3; 
-  border: 1px solid white;
-  /* display: none !important; */
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(1, minmax(auto, 1fr)) 150px;
+  grid-template-rows: repeat(13, minmax(auto, 1fr)) 150px;
   grid-gap: 20px;
-  height: 100%;
   width: 110px;
+  position: absolute;
+  top: -2000px;
 }
 
 .hide {
