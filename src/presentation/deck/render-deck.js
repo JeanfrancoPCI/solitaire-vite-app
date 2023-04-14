@@ -1,5 +1,6 @@
 import { Deck } from '../../models/deck';
-import { renderCard } from '../cards/render-card';
+import { renderCardDeck } from '../cards/render-card-deck';
+import './deck.css';
 
 let deck;
 
@@ -8,8 +9,10 @@ export const renderDeck = (deckElement, game) => {
     // renderColumns(deck, cardsElement);
 
     for (let card of game.deck.cards) {
-        console.log('card', card);
-        deckElement.append(renderCard(card));
+        let cardDiv = renderCardDeck(card);
+        cardDiv.style.zIndex = game.deck.cards.indexOf(card);
+        // cardDiv.style.position = "absolute";
+        deckElement.append(cardDiv);
     }
 }
 

@@ -3,12 +3,13 @@ import './card.css'
 const pathAssetsCards = '../assets/cards';
 const svgBackCover = 'back-black.svg';
 
-export const renderCard = ( card ) => {
+export const renderCardDeck = ( card ) => {
     let cardDiv = document.createElement('div');
     let id = card.value + card.sign;
-    cardDiv.classList.add('card');
+    cardDiv.classList.add('cardDeck');
     cardDiv.setAttribute('data-id', id);
     
+
     if ( !card.isVisible ) {
         createBackCover(cardDiv);
         cardDiv.classList.add('flipCard');
@@ -49,7 +50,7 @@ const createBackCover = ( divElement ) => {
 }
 
 const dragStart = (event) => {
-    let divCard = event.target.closest('.card');
+    let divCard = event.target.closest('.cardDeck');
     let dragDiv = document.querySelector('.drag-element');
 
     let columnDiv = divCard.parentElement;
@@ -71,7 +72,7 @@ const mouseOver = (event) => {
     let dragDiv = document.querySelector('.drag-element');
     dragDiv.innerHTML = '';
     
-    let divCard = event.target.closest('.card');
+    let divCard = event.target.closest('.cardDeck');
     let columnDiv = divCard.parentElement;
     let indexCard = Array.from(columnDiv.children).indexOf(divCard);
 
