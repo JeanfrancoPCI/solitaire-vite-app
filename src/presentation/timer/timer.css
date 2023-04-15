@@ -1,7 +1,9 @@
 .timer > label {
     font-weight: bolder;
+    font-size: 14px;
 }
 
 .timer > span {
     color: yellow;
+    font-size: 14px
 }

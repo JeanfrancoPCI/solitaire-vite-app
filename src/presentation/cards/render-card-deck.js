@@ -1,4 +1,4 @@
-import './card.css'
+import './card-deck.css'
 
 const pathAssetsCards = '../assets/cards';
 const svgBackCover = 'back-black.svg';
@@ -8,7 +8,6 @@ export const renderCardDeck = ( card ) => {
     let id = card.value + card.sign;
     cardDiv.classList.add('cardDeck');
     cardDiv.setAttribute('data-id', id);
-    
 
     if ( !card.isVisible ) {
         createBackCover(cardDiv);
@@ -84,7 +83,6 @@ const mouseOver = (event) => {
 }
 
 const mouseOut = (event) => {
-
     let dragDiv = document.querySelector('.drag-element');
     dragDiv.innerHTML = '';
 }

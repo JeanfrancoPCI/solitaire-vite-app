@@ -1,0 +1,40 @@
+.groups {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-gap: 5px;
+    justify-items: center;
+    align-items: center;
+}
+
+.group {
+    position: relative;
+    width: 95px;
+    height: 137px;
+    border: 1px dotted white;
+}
+
+.spades::after {
+    content: "♠";
+    color: black;
+    font-size: 5rem;
+}
+
+.clubs::after {
+    content: "♣";
+    color: black;
+    font-size: 5rem;
+}
+
+.diamonds::after {
+    content: "♦";
+    color: red; 
+    font-size: 5rem;
+}
+
+.hearts::after {
+    content: "♥";
+    color: red;
+    font-size: 5rem; 
+}

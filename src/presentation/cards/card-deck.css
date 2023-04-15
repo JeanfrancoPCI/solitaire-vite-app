@@ -1,0 +1,29 @@
+.cardDeck {
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    padding: 2px;
+}
+
+.cardDeck > .front, .cardDeck > .back {
+    position: relative;
+    backface-visibility: hidden;
+}
+
+.cardDeck > .front {
+    padding-left: 2px;
+}
+
+.cardDeck > .back {
+    padding-right: 2px;
+    transform: rotateY(-180deg);
+}
+
+.cardDeck > .flipCard {
+    transform: rotateY(-180deg);
+}
+
+.cardDeck > .front > img, .cardDeck > .back > img {
+    width: 95px;
+    height: 137px;
+}
